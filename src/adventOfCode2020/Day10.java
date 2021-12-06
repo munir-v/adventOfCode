@@ -12,7 +12,7 @@ public class Day10 extends FileReader {
 	public static void test() {
 		
 		
-		
+		 
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException {
