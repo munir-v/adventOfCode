@@ -9,10 +9,10 @@ public class Day10 extends FileReader {
 	static File file = new File("AOC/day10test.txt");
 	static ArrayList<String> values = new ArrayList<>();
 	
-	public static void test() {
+	public static void test() { 
 		
 		
-		 
+		  
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException {
