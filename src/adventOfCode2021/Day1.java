@@ -11,7 +11,7 @@ public class Day1 extends FileReader {
 	
 	public static void part1() {
 		
-		
+		 
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException {
