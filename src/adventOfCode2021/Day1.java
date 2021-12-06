@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Day1 extends FileReader {
 
-	static File file = new File("AOC2018/2018day.txt");
+	static File file = new File("AOC2021/day.txt");
 	static ArrayList<String> vals = new ArrayList<>();
 	
 	public static void part1() {
