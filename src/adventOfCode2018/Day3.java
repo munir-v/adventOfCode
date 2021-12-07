@@ -25,7 +25,7 @@ public class Day3 extends FileReader {
 	/**
 	 * fills coordinates array; 
 	 * pos x%4=1 --> leftX; pos x%4=2 --> rightX 
-	 * pos x%4=1 --> topY; pos x%4=0 --> bottomY
+	 * pos x%4=3 --> topY; pos x%4=0 --> bottomY
 	 */
 	private static void parseFile() {
 		for (String i : vals) {
