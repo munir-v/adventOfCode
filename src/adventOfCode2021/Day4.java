@@ -34,7 +34,7 @@ public class Day4 extends FileReader {
 				}
 			}
 		}
-	}
+	} 
 	
 	//sets all bingo slot to -1 if they equal the number called
 	private static void newRound() {
