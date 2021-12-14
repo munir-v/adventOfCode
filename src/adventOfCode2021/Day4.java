@@ -138,30 +138,29 @@ public class Day4 extends FileReader {
 
 	//removes values from all winning boards except the last one
 	private static void losingBoard() {
-		for (int i=0; i<numsDrawn.length; i++) {
-			lastNumCalled = Integer.parseInt(numsDrawn[i]);
-			if(bingo.size()>25) { //there is more than one board that hasn't won yet
-				newRound();
-				if(checkHorz()!=-1) {
-					int winningBoard = checkHorz();
-					removeWinningBoard(winningBoard);
-				}
-				else if(checkVert()!=-1) {
-					int winningBoard = checkVert();
+		int lastDrawn = 0;
+		while(bingo.size()>25) { //play until only one board hasn't won
+			lastNumCalled = Integer.parseInt(numsDrawn[lastDrawn]);
+			newRound();
+			int winningBoard;
+			if(checkHorz()>-1) {
+				while(checkHorz()>-1) {
+					winningBoard = checkHorz();
 					removeWinningBoard(winningBoard);
 				}
 			}
-			else { //else keep the game running until the last board has a win
-				newRound();
-				if(checkHorz()!=-1) {
-					checkHorz();
-					break;
-				}
-				else if(checkVert()!=-1) {
-					checkVert();
-					break;
+			else if(checkVert()>-1) {
+				while(checkVert()>-1) {
+					winningBoard = checkVert();
+					removeWinningBoard(winningBoard);
 				}
 			}
+			lastDrawn++;
+		}
+		while((checkHorz()<0 && checkVert()<0)) { //keep playing until the last board wins
+			lastNumCalled = Integer.parseInt(numsDrawn[lastDrawn]);
+			newRound();
+			lastDrawn++;
 		}
 	}
 	
@@ -169,7 +168,7 @@ public class Day4 extends FileReader {
 	private static int bingoScoreLast() {
 		int score = 0;
 		losingBoard();
-
+		
 		for (int i=0; i<25; i++) {
 			int curNum = bingo.get(i);
 			if(curNum!=-1) {

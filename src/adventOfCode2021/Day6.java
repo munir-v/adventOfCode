@@ -39,15 +39,28 @@ public class Day6 extends FileReader {
 		return vals.size();
 	}
 	
-	public static void part2() {
-		
-		
+	public static int part2() {
+		readString(); 
+
+		for (int i=0; i<256; i++) {
+			int max = vals.size();
+			for (int j=0; j<max; j++) {
+				int cur = vals.get(j);
+				if(cur==0) {
+					vals.set(j,6);
+					vals.add(8);
+				}
+				else vals.set(j,cur-1);
+			}
+		}
+
+		return vals.size();
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		input = readFileToString(file);
-		System.out.println(part1());
-		part2();
+//		System.out.println(part1());
+		System.out.println(part2());
 		
 	}
 }
