@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Day4 extends FileReader {
 	
-	static File file = new File("AOC2021/day4test.txt");	
+	static File file = new File("AOC2021/day4.txt");	
 	static ArrayList<String> vals = new ArrayList<>();
 	static ArrayList<Integer> bingo = new ArrayList<>();
 	static String[] numsDrawn; //total list of #s to be drawn
@@ -129,33 +129,48 @@ public class Day4 extends FileReader {
 		return score*lastNumCalled;
 	}
 	
+	//removes all the values from the bingo array of the board that won 
+	private static void removeWinningBoard(int winningBoard) {
+		for (int i=winningBoard*25+24; i>=winningBoard*25; i--) {
+			bingo.remove(i);
+		}
+	}
 
-	//returns the number of the last board to win
-	private static int losingBoard() {
-		int retval = -1;
-		
+	//removes values from all winning boards except the last one
+	private static void losingBoard() {
 		for (int i=0; i<numsDrawn.length; i++) {
 			lastNumCalled = Integer.parseInt(numsDrawn[i]);
-			newRound();
-			if(checkHorz()!=-1) {
-				retval = checkHorz();
-				break;
+			if(bingo.size()>25) { //there is more than one board that hasn't won yet
+				newRound();
+				if(checkHorz()!=-1) {
+					int winningBoard = checkHorz();
+					removeWinningBoard(winningBoard);
+				}
+				else if(checkVert()!=-1) {
+					int winningBoard = checkVert();
+					removeWinningBoard(winningBoard);
+				}
 			}
-			else if(checkVert()!=-1) {
-				retval = checkVert();
-				break;
+			else { //else keep the game running until the last board has a win
+				newRound();
+				if(checkHorz()!=-1) {
+					checkHorz();
+					break;
+				}
+				else if(checkVert()!=-1) {
+					checkVert();
+					break;
+				}
 			}
 		}
-		return retval;
 	}
 	
 	//returns the score of the last board to win (sum of all unmarked numbers)
 	private static int bingoScoreLast() {
 		int score = 0;
-		int winningBoard = winningBoard();
-		System.out.println("winningBoard: " + winningBoard);
+		losingBoard();
 
-		for (int i=winningBoard*25; i<winningBoard*25+25; i++) {
+		for (int i=0; i<25; i++) {
 			int curNum = bingo.get(i);
 			if(curNum!=-1) {
 				score+=curNum;
@@ -167,7 +182,7 @@ public class Day4 extends FileReader {
 	public static int part2() throws FileNotFoundException {
 		readNumsDrawn();
 		readBoardNums();
-		int score = bingoScore();
+		int score = bingoScoreLast();
 
 		System.out.println("score: " + score);
 		System.out.println("lastNumCalled: " + lastNumCalled);
