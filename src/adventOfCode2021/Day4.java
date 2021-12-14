@@ -190,7 +190,7 @@ public class Day4 extends FileReader {
 	}
 	 
 	public static void main(String[] args) throws FileNotFoundException {
-		readFile(file,vals);
+		readFile(file,vals); 
 //		System.out.println("answer: " + part1());
 		System.out.println("answer: " + part2());
 	}
