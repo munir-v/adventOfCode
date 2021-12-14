@@ -22,7 +22,7 @@ public class Day6 extends FileReader {
 	
 	//find total # of fish
 	public static int part1() {
-		readString();
+		readString(); 
 
 		for (int i=0; i<80; i++) {
 			int max = vals.size();
