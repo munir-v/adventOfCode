@@ -174,7 +174,7 @@ public class Day4 extends FileReader {
 		
 		return score*lastNumCalled;
 	}
-	
+	 
 	public static void main(String[] args) throws FileNotFoundException {
 		readFile(file,vals);
 //		System.out.println("answer: " + part1());
